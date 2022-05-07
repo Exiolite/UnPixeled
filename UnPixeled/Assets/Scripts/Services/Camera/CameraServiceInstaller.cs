@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Services.Actors
+namespace Services.Camera
 {
     public class CameraServiceInstaller : MonoInstaller
     {

@@ -1,7 +1,7 @@
 using MonoBehaviours.Camera;
 using UnityEngine;
 
-namespace Services.Actors
+namespace Services.Camera
 {
     public class CameraService : MonoBehaviour
     {

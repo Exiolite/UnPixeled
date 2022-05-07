@@ -1,4 +1,4 @@
-using Services;
+using Services.Input;
 using UnityEngine;
 using Zenject;
 
@@ -18,7 +18,6 @@ namespace MonoBehaviours.Player
             
             _rotationAngle = new Vector3();
         }
-        
         
         private void LateUpdate()
         {

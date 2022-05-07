@@ -1,13 +1,13 @@
-using Services;
 using UnityEngine;
 using Zenject;
 
-namespace MonoInstallers
+namespace Services.Input
 {
     public class InputServiceInstaller : MonoInstaller
     {
         [SerializeField] private InputService _inputService;
 
+        
         public override void InstallBindings()
         {
             Container.Bind<InputService>()
