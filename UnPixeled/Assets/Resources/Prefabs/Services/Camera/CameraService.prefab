@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7702294628840823544}
   - component: {fileID: 172284522328791204}
   m_Layer: 0
-  m_Name: ActorsService
+  m_Name: CameraService
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50cc8d73c2374fac97e298a7b6f9b8be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cameraControllerPrefab: {fileID: 6316753421689450078, guid: e03fc2069df48714c8f8dd8bdddd5e87, type: 3}
