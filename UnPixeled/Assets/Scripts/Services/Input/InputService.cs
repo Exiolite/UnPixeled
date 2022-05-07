@@ -7,7 +7,7 @@ namespace Services
     {
         public Vector2 MovementVector { get; private set; }
 
-        
+
         public void EventToUpdateMovementVector(InputAction.CallbackContext callbackContext)
         {
             MovementVector = callbackContext.ReadValue<Vector2>().normalized;
