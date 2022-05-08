@@ -1,4 +1,3 @@
-using System;
 using Services.Input;
 using UnityEngine;
 using Zenject;
@@ -11,50 +10,20 @@ namespace MonoBehaviours.Player
         
         [SerializeField] private Animator _animator;
 
-        private static readonly int Move = Animator.StringToHash("Move");
-        private static readonly int StuffAttack = Animator.StringToHash("StuffAttack");
-        private static readonly int Attack1 = Animator.StringToHash("Attack");
+        private static readonly int Run = Animator.StringToHash("Run");
+        private static readonly int StuffRunAttack = Animator.StringToHash("StuffRunAttack");
+        private static readonly int StuffRunDefence = Animator.StringToHash("StuffRunDefence");
+        private static readonly int StuffSteadyAttack = Animator.StringToHash("StuffSteadyAttack");
+        private static readonly int StuffSteadyDefence = Animator.StringToHash("StuffSteadyDefence");
         
 
-        public void Update()
+        private void Update()
         {
-            MovementAnimations();
-            UpdateWeaponAnimation();
-        }
-        
-        
-        private void MovementAnimations()
-        {
-            _animator.SetInteger(Move, _inputService.MovementVector != Vector2.zero ? 1 : 0);
-        }
-        
-        private void UpdateWeaponAnimation()
-        {
-            //UpdateAttack();
-            //UpdateDefence();
-        }
-
-        private void UpdateAttack()
-        {
-            if (false)
-            {
-                _animator.SetInteger(StuffAttack, 1);
-            }
-            else if (Input.GetAxis("Attack") == 0)
-            {
-                _animator.SetInteger(StuffAttack, 0);
-                _animator.SetInteger(Attack1, 0);
-            }
-            else
-            {
-                _animator.SetInteger(StuffAttack, 0);
-                _animator.SetInteger(Attack1, 0);
-            }
-        }
-
-        private void UpdateDefence()
-        {
-
+            _animator.SetInteger(Run, !_inputService.IsMovementVectorZero ? 1 : 0);
+            _animator.SetInteger(StuffRunAttack, _inputService.IsLeftMouseButtonDown && !_inputService.IsMovementVectorZero ? 1 : 0);
+            _animator.SetInteger(StuffRunDefence, _inputService.IsRightMouseButtonDown && !_inputService.IsMovementVectorZero ? 1 : 0);  
+            _animator.SetInteger(StuffSteadyAttack, _inputService.IsLeftMouseButtonDown && _inputService.IsMovementVectorZero ? 1 : 0);
+            _animator.SetInteger(StuffSteadyDefence, _inputService.IsRightMouseButtonDown && _inputService.IsMovementVectorZero ? 1 : 0);
         }
     }
 }

@@ -5,12 +5,37 @@ namespace Services.Input
 {
     public class InputService : MonoBehaviour
     {
-        public Vector2 MovementVector { get; private set; }
-        public bool isLeftMouseButtonDown { get; private set; }
+        public Vector3 MovementVector { get; private set; }
+        public bool IsMovementVectorZero { get; private set; } 
+        
+        public bool IsLeftMouseButtonDown { get; private set; }
+        public bool IsRightMouseButtonDown { get; private set; }
+
+        private Transform _transform;
+
+
+        private void Awake()
+        {
+            _transform = GetComponent<Transform>();
+            _transform.eulerAngles = new Vector3(0, 45, 0); // Hard rotate to move diagonally
+        }
+
 
         public void EventToUpdateMovementVector(InputAction.CallbackContext callbackContext)
         {
-            MovementVector = callbackContext.ReadValue<Vector2>().normalized;
+            Vector2 callbackValue = callbackContext.ReadValue<Vector2>().normalized;
+            MovementVector = callbackValue.x * _transform.right + callbackValue.y * _transform.forward;
+            IsMovementVectorZero = MovementVector == Vector3.zero;
+        }
+
+        public void EventToUpdateLeftMouseButton(InputAction.CallbackContext callbackContext)
+        {
+             IsLeftMouseButtonDown = callbackContext.ReadValueAsButton();
+        }
+        
+        public void EventToUpdateRightMouseButton(InputAction.CallbackContext callbackContext)
+        {
+            IsRightMouseButtonDown = callbackContext.ReadValueAsButton();
         }
     }
 }

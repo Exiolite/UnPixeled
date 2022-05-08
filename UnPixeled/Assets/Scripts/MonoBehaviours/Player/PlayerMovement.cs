@@ -28,7 +28,7 @@ namespace MonoBehaviours.Player
         {
             _movementVelocity.x = _inputService.MovementVector.x * _moveSpeed;
             _movementVelocity.y = Physics.gravity.y;
-            _movementVelocity.z = _inputService.MovementVector.y * _moveSpeed;
+            _movementVelocity.z = _inputService.MovementVector.z * _moveSpeed;
 
             _characterController.Move(_movementVelocity * Time.deltaTime);
         }

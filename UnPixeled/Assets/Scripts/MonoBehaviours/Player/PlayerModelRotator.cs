@@ -21,9 +21,9 @@ namespace MonoBehaviours.Player
         
         private void LateUpdate()
         {
-            if (_inputService.MovementVector == Vector2.zero) return;
+            if (_inputService.IsMovementVectorZero) return;
             
-            _rotationAngle.y = Mathf.Atan2(_inputService.MovementVector.x, _inputService.MovementVector.y) * Mathf.Rad2Deg;
+            _rotationAngle.y = Mathf.Atan2(_inputService.MovementVector.x, _inputService.MovementVector.z) * Mathf.Rad2Deg;
             _transform.rotation = Quaternion.Euler(_rotationAngle);
         }
     }

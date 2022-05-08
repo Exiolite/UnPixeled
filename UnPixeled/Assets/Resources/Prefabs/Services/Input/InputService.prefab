@@ -86,6 +86,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: be792bb3-533f-468e-9079-05be000069ed
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2885552155276995837}
+        m_TargetAssemblyTypeName: Services.Input.InputService, Assembly-CSharp
+        m_MethodName: EventToUpdateLeftMouseButton
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e3e0949f-4859-4c3b-b260-60b73e3f99e3
+    m_ActionName: Player/LeftMouse[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2885552155276995837}
+        m_TargetAssemblyTypeName: Services.Input.InputService, Assembly-CSharp
+        m_MethodName: EventToUpdateRightMouseButton
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d302dc3c-deda-4430-8d8f-c0d08651e670
+    m_ActionName: Player/RightMouse[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
