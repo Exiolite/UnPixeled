@@ -1,101 +1,157 @@
-vbox(def = 'bg2' corner = '12' radius = '2') ::
+vbox : bg2 : (corner = '12' radius = '2') :
 {
-	hbox(size = '25') ::
-	{
-		hbox(id = 'top_render' hidden = '1' flex = '1') ::
+	vbox : (id = 'v_anim' size = '80' hidden = '1') :
+	{		
+		hbox : (margin = '0 0 2 0') : (flex = '1') :
 		{
-			switch(def = 'sw-play' onClick = 'set pt_auto' selected = '1')
-			(corner = '12' radius = '2' size = '32')
-			(hint = 'Toggle Progressive Rendering')
+			vbox : (size = '90' prev = '6' next = '6') :
+			{
+				hbox : (flex = '1' margin = '0 0 4 4' prev ='14') :
+				{
+					bn-ic : (onClick = 'opack'   text = '^113' textFont = 'icon' textSize = '16 16') : (flex = '1') : (hint = 'Pack Models to Animation')
+					bn-ic : (onClick = 'ounpack' text = '^112' textFont = 'icon' textSize = '15 15') : (flex =  '1') : (hint = 'Unpack Animation to Models')
+					bn-ic : (delayed = '0' onClick = 'astep time -1' repeated = '1' text = '^x25c0' textFont = 'symbol' textSize = '10 10') : (flex =  '1') : (hint = 'Previous Frame [<]')
+					bn-ic : (delayed = '0' onClick = 'astep time +1' repeated = '1' text = '^x25b6' textFont = 'symbol' textSize = '10 10') : (flex =  '1') : (hint = 'Next Frame [>]')
+				}
+				hbox : (flex = '1' margin = '0 0 4 4' next = '3') :
+				{
+					bn-ic : (delayed = '0' onClick = 'astep key -1' onClick1 = 'astep key -2' repeated = '1' text = '^x21e4' textFont = 'symbol' textSize = '14 14') : (flex = '1') : (hint = 'Previous Key Frame [CTRL+<] : First [+SHIFT]')
+					bn-ic : (delayed = '0' onClick = 'astep key +1' onClick1 = 'astep key +2' repeated = '1' text = '^x21e5' textFont = 'symbol' textSize = '16 16') : (flex = '1') : (hint = 'Next Key Frame [CTRL+>] : Last [+SHIFT]')
+					bn-ic : (delayed = '0' onClick = 'adel' textFont = 'icon' text = '^11' textSize = '13 13') : (flex = '1') : (hint = 'Delete Key Frame')
+					bn-ic : (delayed = '0' onClick = 'aadd' textFont = 'icon' text = '^10' textSize = '13 13') : (flex = '1') : (hint = 'Add/Replace Key Frame [F5]')
+				}
+			}
 
-			sp(flex = '1')	
+			layer : (scroll = '-1 0' fitSize = '0 1' bgColor = '0 0 0 0' barColor = '45 45 45' barColor-h = '30 30 30' barColor-s = '0 0 0' flex = '1') : (hint = 'Timeline : Multi-Select [CTRL/SHIFT] : Duplicate [CTRL+SHIFT]') :
+			{
+				anim : (id = 'anim' keyColor = '160 160 160' margin = '0 0 2 0' menu = 'popup_anim')
+			}
 
-			label(def = 'h3' text = '^57' textFont = '2' textSize = '20 20')
-			(size = '26' next = '5')
+			vbox : (size = '40' prev = '6' next = '6') :
+			{
+				hbox : (flex = '1' margin = '0 0 2 2' prev = '14') :
+				{
+					tf-v-c : (bind = [[value = 'a_time']] text = '0' maxLength = '3') : (flex = '1') : (hint = 'Current Frame')
+				}
+				hbox : (flex = '1' margin = '0 0 4 4' next = '3') :
+				{
+					switch : (bind = [[value = 'a_loop']] text = '^90' textFont = 'icon' textSize = '15 15') : (flex = '1') : (hint = 'Loop')
+					switch : (bind = [[value = 'a_global']] text = '^97' textFont = 'icon' textSize = '14 14') : (flex =  '1') : (hint = 'Global Time')
+				}
+			}
+		}
+	}
+	
+	hbox : (size = '25') :
+	{
+		sw-view : (view = [['v_anim']] selected = '0')
+		 : (text2 = '^9660' text = '^9650')
+		 : (size = '24' prev = '3' next = '3' margin = '0 0 2 2')
+		 : (hint = 'Show Animation Control')
 
-			textField(def = 'tf-size' id = 'pt_image' onEnter = 'set pt_image' default = 'image' maxLength = '10')
-			(size = '110')
-			(hint = 'Image Size [16 - 2048]')
+		hbox : (id = 'top_render' hidden = '1' flex = '1') :
+		{
+			sw-play : (bind = [[value = 'pt_auto']])
+			 : (corner = '15' radius = '2' size = '28')
+			 : (hint = 'Toggle Progressive Rendering')
 
-			resizer(axis = '0' class = 'image')(range = '16 2048' step = '5' space = '2')(size = '8' next = '3' margin = '0 0 0 0')
+			sp : (flex = '1')	
 
-			label(def = 'h3' text = '^59' textFont = '2' textSize = '17 16')
-			(size = '26' next = '3')
+			label : (text = '^57' textFont = 'icon' textSize = '20 20')
+			 : (size = '26' next = '5')
 
-			textField(def = 'tf-size' id = 'pt_spp' onEnter = 'set pt_spp' default = 'sample' maxLength = '7')
-			(size = '100')
-			(hint = 'Samples Per Pixel [512 - 100000]')
+			tf-size : (bind = [[value = 'pt_image']] default = 'image' maxLength = '10')
+			 : (size = '110')
+			 : (hint = 'Image Size')
+
+			resizer : (subclass = 'image' axis = '0') : (range = '16 2048' step = '5' space = '2') : (size = '8' next = '3' corner = '10' radius = '3')
+
+			label : (text = '^59' textFont = 'icon' textSize = '17 16')
+			 : (size = '26')
+
+			tf-size : (bind = [[value = 'pt_spp']] default = 'sample' maxLength = '7')
+			 : (size = '100')
+			 : (hint = 'Samples Per Pixel')
 			
-			resizer(axis = '0' class = 'int')(range = '512 100000' step = '10')(size = '8' next = '3' margin = '0 0 0 0')
+			res-i : (axis = '0' range = '64 100000' step = '10') : (next = '3' prev = '0' corner = '10' radius = '3')
 		}
 		
-		hbox(id = 'top_edit' flex = '1') ::
+		hbox : (id = 'top_edit' flex = '1') :
 		{
-			switch(def = 'sw-orange' onClick = 'set b_switch_obj' text = '^74' textFont = '2' textSize = '14 14')(margin = '0 0 2.5 2.5' size = '20' prev = '3' next = '3')(hint = 'Double Click to Switch Between Objects')
+			sw-orange : (bind = [[value = 'b_switch_obj']] text = '^74' textFont = 'icon' textSize = '14 14') : (margin = '0 0 2.5 2.5' size = '20' prev = '3' next = '3') : (hint = 'Double Click to Switch Between Objects')
 
-			hbox(id = 'top_oedit' flex = '1') ::
+			hbox : (id = 'top_oedit' flex = '1') :
 			{
-				switch(def = 'sw-orange' onClick = 'set b_obj_freemove' text = '^22' textFont = '2' textSize = '15 15')(margin = '0 0 2.5 2.5' size = '20' next = '3')(hint = 'Free Move Objects [CTRL+Drag] : Duplicate [CTRL+SHIFT+Drag]')
-				switch(def = 'sw-orange' onClick = 'set b_drag_ref'     text = '^73' textFont = '2' textSize = '15 15')(margin = '0 0 2.5 2.5' size = '20' next = '3')(hint = 'Create Reference of Objects [SHIFT+Drag]')
+				sw-orange : (bind = [[value = 'b_drag_ref']] text = '^73' textFont = 'icon' textSize = '15 15') : (margin = '0 0 2.5 2.5' size = '20' next = '3') : (hint = 'Create Reference of Objects [SHIFT+Drag]')
 	
-				sp(flex = '1')
+				sp : (flex = '1')
 				
-				sp(def = 'bg0')(size = '2')
+				bar-v1
 
-				button(def = 'bn-bar' id = 'onew' onClick = 'onew' textFont = '2' text = '^10')
-				(size = '36')
-				(hint = 'New Object [CTRL+N]')
+				bn-bar : (id = 'onew' onClick = 'onew' textFont = 'icon' text = '^10')
+				 : (size = '36')
+				 : (hint = 'New Object [CTRL+N]')
 
-				button(def = 'bn-bar' id = 'odel' onClick = 'odel' textFont = '2' text = '^11')
-				(size = '36')
-				(hint = 'Delete Objects [Backspace/Delete]')
+				bn-bar : (id = 'odel' onClick = 'odel' textFont = 'icon' text = '^11')
+				 : (size = '36')
+				 : (hint = 'Delete Objects [Backspace/Delete]')
 				
-				sp(def = 'bg0')(size = '2')
+				bar-v1
 				
-				button(def = 'bn-bar' id = 'ogroup' onClick = 'ogroup' textFont = '2' text = '^19')
-				(size = '36')
-				(hint = 'Group Objects [CTRL+R]')
+				bn-bar : (id = 'ogroup' onClick = 'ogroup' textFont = 'icon' text = '^19')
+				 : (size = '36')
+				 : (hint = 'Group Objects [CTRL+R]')
 
-				button(def = 'bn-bar' id = 'oungroup' onClick = 'oungroup' textFont = '2' text = '^18')
-				(size = '36')
-				(hint = 'Ungroup Objects [CTRL+SHIFT+R]')
+				bn-bar : (id = 'oungroup' onClick = 'oungroup' textFont = 'icon' text = '^18')
+				 : (size = '36')
+				 : (hint = 'Ungroup Objects [CTRL+SHIFT+R]')
 
-				sp(def = 'bg0')(size = '2')
+				bar-v1
 			
-				button(def = 'bn-bar' id = 'lv_prev' onClick = 'olevel -1' text = '^8593' textSize = '14 14')
-				(size = '36')
-				(hint = 'Leave Group [SHIFT+TAB/Double Click]')
+				bn-bar : (id = 'lv_prev' onClick = 'olevel -1' text = '^X25b3' textSize = '14 14')
+				 : (size = '36')
+				 : (hint = 'Leave Group [SHIFT+TAB/Double Click]')
 
-				button(def = 'bn-bar' id = 'lv_next' onClick = 'olevel +1' text = '^8595' textSize = '14 14')
-				(size = '36')
-				(hint = 'Enter Group [TAB/Double Click]')
+				bn-bar : (id = 'lv_next' onClick = 'olevel +1' text = '^X25bd' textSize = '14 14')
+				 : (size = '36')
+				 : (hint = 'Enter Group [TAB/Double Click]')
 
-				sp(def = 'bg0')(size = '2')
+				bar-v1
 			}
 			
-			hbox(id = 'top_medit' hidden = '1' flex = '1') ::
+			hbox : (id = 'top_medit' hidden = '1' flex = '1') :
 			{
-				switch(def = 'sw-orange' onClick = 'set b_modify_sel' text = '^12'  textFont = '2' textSize = '15 15')(margin = '0 0 2.5 2.5' size = '20' next = '3')(hint = 'Modify Selection Region')
-				switch(def = 'sw-orange' onClick = 'set b_box_resize' text = '^105' textFont = '2' textSize = '14 14')(margin = '0 0 2.5 2.5' size = '20' next = '3')(hint = 'Show Brush Gizmo : Commit [Enter] : Cancel [Esc] : Two-sided [+SHIFT]')
+				sw-orange : (bind = [[value = 'b_modify_sel']] text = '^12'  textFont = 'icon' textSize = '15 15') : (margin = '0 0 2.5 2.5' size = '20' next = '3') : (hint = 'Modify Selection Region')
+				sw-orange : (bind = [[value = 'b_gizmo']] text = '^105' textFont = 'icon' textSize = '14 14') : (margin = '0 0 2.5 2.5' size = '20' next = '3') : (hint = 'Show Brush Gizmo : Commit [Enter] : Cancel [Esc] : Two-sided [+SHIFT]')
+		
+				sp : (flex = '1')
 
-				sp(flex = '1')
-
-				sp(def = 'bg0')(size = '2')
+				hbox :
+				{
+					bar-v1
+					bn-bar : (id = 'undo_brush' disabled = '1' onClick = 'cmd undo_brush' repeated = '1') : (text = '^X2190') : (size = '36' corner = '0') : (hint = 'Undo Gizmo Transform')
+					bn-bar : (id = 'redo_brush' disabled = '1' onClick = 'cmd redo_brush' repeated = '1') : (text = '^X2192') : (size = '36' corner = '0') : (hint = 'Redo Gizmo Transform')
+				}
 				
-				switch(def = 'sw-cam' id = 'b_resize' onClick = 'set b_type_s resize' textFont = '2' text = '^92' textSize = '15 15')(size = '36' corner = '0')(hint = 'Resize Model : Commit [Enter] : Cancel [Esc] : Two-sided [+SHIFT]')
+				bar-v1
 				
-				textField(def = 'tf-size' id = 'size' onEnter = 'size' default = 'size' maxLength = '12')
-				(corner = '0' margin = '0 0 0 0' size = '125')
-				(hint = 'Resize Model')
+				opBox : (bind = [[value = 'b_type']]) : (size = '36') :
+				{
+					op-brush-sp  : (select_id = 'resize' switch = '1' text = '^92') : (hint = 'Resize Model : Commit [Enter] : Cancel [Esc] : Two-sided [+SHIFT]')
+				}
+				
+				tf-size : (id = 'size' onEnter = 'size' default = 'size' maxLength = '12')
+				 : (corner = '0'  size = '125')
+				 : (hint = 'Resize Model')
 			}
 			
-			button(def = 'bn-bar' onClick = 'shrink' textFont = '2' text = '^101' textSize = '14 14')(size = '36' corner = '0')(hint = 'Fit Model Size')
+			bn-bar : (onClick = 'shrink' textFont = 'icon' text = '^101' textSize = '14 14') : (size = '36' corner = '0') : (hint = 'Fit Model Size')
 
-			sp(def = 'bg0')(size = '2')
+			bar-v1
 			
-			switch(def = 'sw-bar' id = 'lv_edit' onClick = 'olevel -2' selected = '1' text = '^9650' text2 = '^9660' textSize = '14 14')
-			(corner = '8' radius = '2')(size = '36')
-			(hint = 'Switch between Model/World [TAB/Double Click]')
+			sw-bar : (id = 'lv_edit' onClick = 'olevel -2' selected = '1' text = '^9650' text2 = '^9660' textFont = 'symbol' textSize = '12 12')
+			 : (corner = '8' radius = '2') : (size = '36')
+			 : (hint = 'Switch between Model/World [TAB/Double Click]')
 		}			
 	}
 }

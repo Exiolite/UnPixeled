@@ -1,108 +1,118 @@
-vbox(id = 'menu_image' clip = '0' hidden = '1')(margin = '9 9 0 0') ::
+vbox : (id = 'menu_image' clip = '0' hidden = '1') : (margin = '9 9 0 0') :
 {
-	switch(class = 'panel')(def='h1' selected = '1' text = 'Image')(size = '36')
+	sw-h1 : (selected = '1' text = 'Image') : (size = '28')
 
-	vbox ::
+	vbox :
 	{
-		opBox(class = 'tab')(def = 'outline' id = "pt_target" index = '0' next = '5' margin = '4 4 0 0') ::
+		tab-l : (index = '0' next = '11' margin = '4 4 -3 -3' size = '70') :
 		{
-			vbox(def = 'outline-i') ::
+			vbox :
 			{
-				option(class = 'cmd')(def = 'op-bw' id = [['menu_photo']]	onSelect = 'set pt_show motion 0' text = 'Photo'	textSize = '8.5 8.5')(corner = '12' radius = '2')(size = '28')(hint = 'Still Image')
-				option(class = 'cmd')(def = 'op-bw' id = [['menu_spin']]	onSelect = 'set pt_show motion 1' text = 'Turntable'	textSize = '8.5 8.5')(size = '28')(hint = 'Turntable Animation')
+				option : (view = [['panel_photo']]	onSelect = 'set pt_b_motion 0' text = 'Photo'	) : (corner = '12' radius = '2') : (flex = '1') : (hint = 'Still Image')
+				option : (view = [['panel_spin']]	onSelect = 'set pt_b_motion 1' text = 'Turntable') : (flex = '1') : (hint = 'Turntable Animation')
+				option : (view = [['panel_anim']]	onSelect = 'set pt_b_motion 0' text = 'Anim') : (flex = '1') : (hint = 'Animation')
 			}
 		}
 	
 		//----------------
 		// Photo
 		//----------------
-		vbox(id = 'menu_photo')(next = '8')(hint = 'Still Image') ::
+		vbox : (id = 'panel_photo') : (next = '8') : (hint = 'Still Image') :
 		{
-			vbox(next = '8') ::
+			vbox : (next = '8') :
 			{
-				hbox(size = '28')(hint = 'Image Width [1 - 12000]') ::
+				hbox : (size = '28') : (hint = 'Image Width') :
 				{
-					label(def = 'h3' text = 'Width')(flex = '1' next = '8')	
-
-					textField(def = 'tf-bg' id = 'pt_photo_w' onEnter = 'set pt_photo_w' maxLength = '5')
-					(size = '40' next ='3')
-					resizer(class = 'int')(range = '1 12000' step = '10' space = '4')(size = '8')
+					h3 : (text = 'Width')
+					tf-v-c : (bind = [[value = 'pt_photo_w']] maxLength = '5' once = '1' enter = '1') : (size = '40')
+					res-i : (range = '1 12000' step = '10' space = '4')
 				}
 			
-				hbox(size = '28')(hint = 'Image Height [1 - 12000]') ::
+				hbox : (size = '28') : (hint = 'Image Height') :
 				{
-					label(def = 'h3' text = 'Height')(flex = '1' next = '8')	
-
-					textField(def = 'tf-bg' id = 'pt_photo_h' onEnter = 'set pt_photo_h' maxLength = '5')
-					(size = '40' next ='3')
-					resizer(class = 'int')(range = '1 12000' step = '10' space = '4')(size = '8')
+					h3 : (text = 'Height')
+					tf-v-c : (bind = [[value = 'pt_photo_h']] maxLength = '5' once = '1' enter = '1') : (size = '40')
+					res-i : (range = '1 12000' step = '10' space = '4')
 				}
 
 			}
 		
-			button(def = 'bn-grey' text = 'Render' onClick = 'task photo' delayed = '1')(size = '24' corner = '15' radius = '2' margin = '8 8 0 0')(hint = 'Final Render')
+			button : (text = 'Render' onClick = 'task photo' delayed = '1') : (size = '24') : (hint = 'Final Render')
 		}
 	
 		//----------------
 		// Turntable
 		//----------------
-		vbox(id = 'menu_spin' hidden = '1')(next = '8')(hint = 'Turntable Animation') ::
+		vbox : (id = 'panel_spin' hidden = '1') : (next = '8') : (hint = 'Turntable Animation') :
 		{
-			vbox ::
+			vbox :
 			{
-				//opBox(def = 'outline' index = '0' onClick = 'set pt_spin_type' )(size = '27' next = '5')::
-				//{
-				//	hbox(def = 'outline-i') ::
-				//	{
-				//		option(class = 'cmd')(def = 'op-bw' id = '0'	text = 'Focus')(corner = '12' radius = '2' flex = '1')(hint = 'Spin around the Focus')
-				//		option(class = 'cmd')(def = 'op-bw' id = '1'	text = 'Eye')(corner = '3'  radius = '2' flex = '1')(hint = 'Spin around the Eye')
-				//	}					
-				//}
-			
-				hbox(size = '28')(hint = 'Number of Frames [1 - 3600]') ::
+				hbox : (size = '28') : (hint = 'Number of Frames') :
 				{
-					label(def = 'h3' text = 'Frames')(flex = '1' next = '8')	
-
-					textField(def = 'tf-bg' id = 'pt_spin_frames' onEnter = 'set pt_spin_frames' maxLength = '4')
-					(size = '40' next ='3')
-					resizer( class = 'int')(range = '1 3600' step = '1' space = '4')(size = '8')
+					h3 : (text = 'Frames')
+					tf-v-c : (bind = [[value = 'pt_spin_frames']] maxLength = '4' once = '1' enter = '1') : (size = '40')
+					res-i : (range = '1 3600' space = '4') 
 				}
 
-				hbox(size = '28')(hint = 'Angle [0 - 360]') ::
+				hbox : (size = '28') : (hint = 'Angle') :
 				{
-					label(def = 'h3' text = 'Angle')(flex = '1' next = '8')	
-
-					textField(def = 'tf-bg' id = 'pt_spin_angle' onEnter = 'set pt_spin_angle' maxLength = '4')
-					(size = '40' next ='3')
-					resizer( class = 'int')(range = '0 360' step = '5' space = '5')(size = '8')
+					h3 : (text = 'Angle')	
+					tf-v-c : (bind = [[value = 'pt_spin_angle']] format = 'i' maxLength = '4' once = '1' enter = '1') : (size = '40')
+					res-i : (range = '0 360' space = '1')
 				}
 
-				vbox(hint = 'Motion Blur [0 - 100]')(next = '8') :: 
+				vbox : (hint = 'Motion Blur') : (next = '8') : 
 				{
-					hbox(size = '28') ::
+					hbox : (size = '28') :
 					{
-						label(def = 'h3' text = 'Blur')(flex = '1')	
-
-						textField(def = 'tf-bg' id = 'pt_spin_blur' onEnter = 'set pt_spin_blur' maxLength = '4')
-						(size = '40' next ='3')
-						resizer( class = 'int')(range = '0 1000' step = '1' space = '3')(size = '8')
+						h3 : (text = 'Blur')
+						tf-v-c : (bind = [[value = 'pt_spin_blur']] format = '%' maxLength = '4' once = '1' enter = '1') : (size = '40')
+						res-i : (range = '0 100' space = '4')
 					}
-
-					slider(def = 'sl' id = 'pt_spin_blur_sl' onChange = 'set pt_spin_blur')(size = '24' )
 				}
 			}
 
-			button(def = 'bn-grey' text = 'Render' onClick = 'task spin' delayed = '1')(size = '24' corner = '15' radius = '2' margin = '8 8 0 0')(hint = 'Final Render')
+			button : (text = 'Render' onClick = 'task spin' delayed = '1') : (size = '24') : (hint = 'Final Render')
+		}
+
+		//----------------
+		// Anim
+		//----------------
+		vbox : (id = 'panel_anim' hidden = '1') : (next = '8') : (hint = 'Animation') :
+		{
+			vbox : (next = '8') :
+			{
+				hbox : (size = '28') : (hint = 'Start Frame') :
+				{
+					h3 : (text = 'Start')	
+
+					tf-v-c : (bind = [[value = 'pt_anim_f0']] maxLength = '5' once = '1' enter = '1')
+					 : (size = '40')
+					res-i : (range = '0 120' space = '4') 
+				}
+			
+				hbox : (size = '28') : (hint = 'End Frame') :
+				{
+					h3 : (text = 'End')	
+
+					tf-v-c : (bind = [[value = 'pt_anim_f1']] maxLength = '5' once = '1' enter = '1')
+					 : (size = '40')
+					res-i : (range = '0 120' space = '4')
+				}
+
+			}
+		
+			button : (text = 'Render' onClick = 'task anim' delayed = '1') : (size = '24') : (hint = 'Final Render')
 		}
 	}
 
-	sp(def = 'bar-h' size = '3')
+	bar-h
 	
-	switch(class = 'panel')(def='h1' selected = '1' text = 'Filter')(size = '36')
+	sw-h1 : (selected = '1' text = 'Filter') : (size = '28')
 
-	vbox ::
+	vbox :
 	{
-		button(def = 'bn-grey' text = 'Denoise' onClick = 'denoise exec intel_oidn' delayed = '1')(size = '24' corner = '15' radius = '2' margin = '8 8 0 0')(hint = 'Denoise')
+		button : (text = 'Denoise' onClick = 'denoise exec intel_oidn' delayed = '1') : (size = '24') : (hint = 'Denoise')
 	}
 }
 
