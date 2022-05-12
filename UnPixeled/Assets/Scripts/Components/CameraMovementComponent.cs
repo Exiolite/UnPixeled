@@ -2,9 +2,9 @@ using Services.Camera;
 using UnityEngine;
 using Zenject;
 
-namespace MonoBehaviours.Camera
+namespace Components
 {
-    public class CameraController : MonoBehaviour
+    public class CameraMovementComponent : MonoBehaviour
     {
         [SerializeField] private float _smoothSpeed = 0.125f;
         [SerializeField] private Vector3 _offset;

@@ -1,7 +1,7 @@
-using Models.Health;
+using Models;
 using UnityEngine;
 
-namespace MonoBehaviours.Health
+namespace Components
 {
     [RequireComponent(typeof(Collider))]
     public class HealthComponent : MonoBehaviour
@@ -9,9 +9,10 @@ namespace MonoBehaviours.Health
         [SerializeField] private HealthStats _healthStats;
         
         
-        public void ApplyDamage(Damage damage)
+        public void ApplyDamage(HealthDamage healthDamage)
         {
-            _healthStats.ApplyDamage(damage);
+            _healthStats.ApplyDamage(healthDamage);
+            Debug.Log("Hit");
             
             if (_healthStats.IsHealthGreaterThanZero()) return;
 

@@ -2,9 +2,9 @@ using Services.Camera;
 using UnityEngine;
 using Zenject;
 
-namespace MonoBehaviours.Camera
+namespace Components
 {
-    public class CameraTarget : MonoBehaviour
+    public class CameraTargetComponent : MonoBehaviour
     {
         [Inject] private CameraService _cameraService;
         

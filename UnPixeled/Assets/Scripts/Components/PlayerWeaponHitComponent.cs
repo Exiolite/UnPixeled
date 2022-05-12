@@ -1,17 +1,17 @@
 using System;
-using Models.Health;
+using Models;
 using Services.Input;
 using UnityEngine;
 using Zenject;
 
-namespace MonoBehaviours.Health
+namespace Components
 {
     [RequireComponent(typeof(Collider))]
     public class PlayerWeaponHitComponent : MonoBehaviour
     {
         [Inject] private readonly InputService _inputService;
         
-        [SerializeField] private Damage _damage;
+        [SerializeField] private HealthDamage _healthDamage;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -19,7 +19,7 @@ namespace MonoBehaviours.Health
             if (other.CompareTag("Player")) return;
             if (other.gameObject.TryGetComponent(out HealthComponent healthComponent))
             {
-                healthComponent.ApplyDamage(_damage);
+                healthComponent.ApplyDamage(_healthDamage);
             }
         }
     }

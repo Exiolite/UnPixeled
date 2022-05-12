@@ -1,21 +1,21 @@
-using MonoBehaviours.Camera;
+using Components;
 using UnityEngine;
 
 namespace Services.Camera
 {
     public class CameraService : MonoBehaviour
     {
-        private CameraController _cameraController;
+        private CameraMovementComponent _cameraMovementComponent;
 
 
-        public void InitializeCamera(CameraController cameraController)
+        public void InitializeCamera(CameraMovementComponent cameraMovementComponent)
         {
-            _cameraController = cameraController;
+            _cameraMovementComponent = cameraMovementComponent;
         }
         
         public void SetTargetTransform(Transform targetTransform)
         {
-            _cameraController.SetTarget(targetTransform);
+            _cameraMovementComponent.SetTarget(targetTransform);
         }
     }
 }

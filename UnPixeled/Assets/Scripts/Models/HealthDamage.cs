@@ -1,9 +1,9 @@
 using UnityEngine;
 
-namespace Models.Health
+namespace Models
 {
     [System.Serializable]
-    public class Damage
+    public class HealthDamage
     {
         [SerializeField] private float _damage;
 

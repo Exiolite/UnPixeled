@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,7 +6,7 @@ namespace Services.Input
     public class InputService : MonoBehaviour
     {
         public Vector3 MovementVector { get; private set; }
-        public bool IsMovementVectorZero { get; private set; } 
+        public bool IsMovementVector { get; private set; }
         
         public bool IsLeftMouseButtonDown { get; private set; }
         public bool IsRightMouseButtonDown { get; private set; }
@@ -32,7 +31,7 @@ namespace Services.Input
             
             MovementVector = callbackValue.x * _transform.right + callbackValue.y * _transform.forward;
             
-            IsMovementVectorZero = MovementVector == Vector3.zero;
+            IsMovementVector = MovementVector != Vector3.zero;
         }
         
         public void EventToUpdateLeftMouseButton(InputAction.CallbackContext callbackContext)
