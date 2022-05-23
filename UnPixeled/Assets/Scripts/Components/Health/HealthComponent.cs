@@ -1,7 +1,7 @@
 using Models;
 using UnityEngine;
 
-namespace Components
+namespace Components.Health
 {
     [RequireComponent(typeof(Collider))]
     public class HealthComponent : MonoBehaviour
@@ -12,7 +12,6 @@ namespace Components
         public void ApplyDamage(HealthDamage healthDamage)
         {
             _healthStats.ApplyDamage(healthDamage);
-            Debug.Log("Hit");
             
             if (_healthStats.IsHealthGreaterThanZero()) return;
 

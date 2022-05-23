@@ -1,13 +1,12 @@
-using System;
 using Models;
 using Services.Input;
 using UnityEngine;
 using Zenject;
 
-namespace Components
+namespace Components.Health
 {
     [RequireComponent(typeof(Collider))]
-    public class PlayerWeaponHitComponent : MonoBehaviour
+    public class PlayerWeaponComponent : MonoBehaviour
     {
         [Inject] private readonly InputService _inputService;
         

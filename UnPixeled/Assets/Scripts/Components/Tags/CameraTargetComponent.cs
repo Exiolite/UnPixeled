@@ -2,7 +2,7 @@ using Services.Camera;
 using UnityEngine;
 using Zenject;
 
-namespace Components
+namespace Components.Tags
 {
     public class CameraTargetComponent : MonoBehaviour
     {

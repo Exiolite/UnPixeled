@@ -2,7 +2,7 @@ using Services.Input;
 using UnityEngine;
 using Zenject;
 
-namespace Components
+namespace Components.Animation
 {
     public class PlayerAnimationsComponent : MonoBehaviour
     {

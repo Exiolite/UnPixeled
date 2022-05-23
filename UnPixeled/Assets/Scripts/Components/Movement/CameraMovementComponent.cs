@@ -2,7 +2,7 @@ using Services.Camera;
 using UnityEngine;
 using Zenject;
 
-namespace Components
+namespace Components.Movement
 {
     public class CameraMovementComponent : MonoBehaviour
     {

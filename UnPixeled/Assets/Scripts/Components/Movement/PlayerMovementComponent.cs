@@ -2,7 +2,7 @@ using Services.Input;
 using UnityEngine;
 using Zenject;
 
-namespace Components
+namespace Components.Movement
 {
     [RequireComponent(typeof(CharacterController))]
     public class PlayerMovementComponent : MonoBehaviour
